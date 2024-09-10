@@ -11,7 +11,9 @@ icons = \
   $(foreach size,$(sizes),$(size)x$(size)/$(category)/nix-snowflake.png) \
   scalable/$(category)/nix-snowflake.svg \
   $(foreach size,$(sizes),$(size)x$(size)/$(category)/nix-snowflake-white.png) \
-  scalable/$(category)/nix-snowflake-white.svg
+  scalable/$(category)/nix-snowflake-white.svg \
+  $(foreach size,$(sizes),$(size)x$(size)/$(category)/nix-snowflake-trans.png) \
+  scalable/$(category)/nix-snowflake-trans.svg
 
 install_dest = $(DESTDIR)$(prefix)/share/icons/$(theme)
 
@@ -30,6 +32,14 @@ scalable/$(category)/nix-snowflake.svg: ../logo/nix-snowflake-colours.svg
 	convert -background none -resize $* $< $@
 
 scalable/$(category)/nix-snowflake-white.svg: ../logo/nix-snowflake-white.svg
+	@mkdir -p $(@D)
+	cp $< $@
+
+%/$(category)/nix-snowflake-trans.png: ../logo/nix-snowflake-trans.svg
+	@mkdir -p $(@D)
+	convert -background none -resize $* $< $@
+
+scalable/$(category)/nix-snowflake-trans.svg: ../logo/nix-snowflake-trans.svg
 	@mkdir -p $(@D)
 	cp $< $@
 
